@@ -1,0 +1,90 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PIXEL-BOARD CANVAS</title>
+    <style>
+        table {
+            width: 100%;
+            height: 100vh;
+            table-layout: fixed; /* Impedisce che le celle si adattino al contenuto */
+        }
+        td {
+            border: 1px solid #ddd;
+            text-align: center;
+            vertical-align: middle;
+            position: relative;
+        }
+        .cellb {
+            border: none; /* Rimuove i bordi */
+            background: transparent; /* Sfondo completamente trasparente */
+            cursor: pointer; /* Mostra il cursore come per un normale pulsante */
+            outline: none; 
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+    <script>
+        function getQueryParams() {
+            const params = new URLSearchParams(window.location.search);
+            return {
+                rows: parseInt(params.get('heigh')) || 0,
+                cols: parseInt(params.get('width')) || 0,
+                bgColor: params.get('background') || '#ffffff',
+                color: [
+                    
+                    params.get('palet1') || '#000000',
+                    params.get('palet2') || '#000000',
+                    params.get('palet3') || '#000000',
+                    params.get('palet4') || '#000000',
+                    params.get('palet5') || '#000000',
+                    params.get('background') || '#ffffff',
+                ],
+            };
+        }
+
+        function createTable(rows, cols, bgColor) {
+            const table = document.getElementById('dynamicTable');
+            table.innerHTML = '';
+            table.style.backgroundColor = bgColor;
+
+            for (let i = 0; i < rows; i++) {
+                const row = document.createElement('tr');
+                for (let j = 0; j < cols; j++) {
+                    const cell = document.createElement('td'); // Crea un elemento <td>
+                    cell.setAttribute('name', `0`);
+                    cell.id = `c${i + 1},${j + 1}`;
+                    cell.innerHTML = `<input type= 'button' class= 'cellb' id='b${i + 1},${j + 1}' name= 'b${i + 1},${j + 1}' value = ' ' onclick= 'color(${i + 1},${j + 1});'/>`
+                    row.appendChild(cell);
+                }
+                table.appendChild(row);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const params = getQueryParams();
+            createTable(params.rows, params.cols, params.bgColor);
+        });
+
+        function color(x, y) {
+            // console.log(x, y);
+            var ce = document.getElementById('c' + x + ',' + y);
+            // console.log(ce.id);
+            var currentcolor = parseInt(ce.getAttribute('name'));
+            // console.log(currentcolor);
+            const params = getQueryParams();
+            ce.style.backgroundColor = params.color[currentcolor++];
+            if (currentcolor < 6) {
+                ce.setAttribute('name', `${currentcolor++}`);
+            } else {
+                ce.setAttribute('name', `0`);
+            }
+        }
+    </script>
+</head>
+<body>
+    <table id="dynamicTable"></table>
+</body>
+</html>

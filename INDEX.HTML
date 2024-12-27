@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PIXEL BOARD</title>
+    <style>
+        /* Resetta margini e padding */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Stili generali per il corpo */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9; /* Colore di sfondo chiaro */
+            background-image: url('img/background.jpg'); /* Aggiungi immagine di sfondo */
+            background-size: cover; /* Adatta l'immagine al contenitore */
+            background-position: center; /* Centra l'immagine */
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            background-attachment: fixed; /* Lo sfondo rimarrà fisso durante lo scorrimento */
+        }
+
+        /* Stile per il logo */
+        .logo {
+            width: 250px;
+            margin-bottom: 20px;
+        }
+
+        /* Stile per il titolo */
+        h1 {
+            text-align: center;
+            color: #3e006e;
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        /* Stili per il form */
+        form {
+            background-color: rgba(255, 255, 255, 0.9); /* Sfondo bianco trasparente */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+            text-align: left;
+        }
+
+        /* Etichette e input */
+        label {
+            font-size: 14px;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        input[type="number"],
+        input[type="color"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        /* Stile per il pulsante */
+        input[type="submit"] {
+            background-color: #a04ae2;
+            color: white;
+            border: none;
+            padding: 15px;
+            width: 100%;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #a04ae2;
+        }
+
+        /* Layout per i selettori di colore */
+        .color-palette {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        input[type="color"] {
+            width: 30%;
+            height: 40px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Aggiungi il logo -->
+    <img src="img/logo.svg" alt="Logo" class="logo">
+    
+    <h1>CANVAS SETTINGS:</h1>
+    <form action="canvas.html" method="get">
+        <!-- Altezze e larghezze -->
+        <label for="heigh">Height:</label>    
+        <input type="number" id="heigh" name="heigh" min="1" max="50" value="2"><br>
+        
+        <label for="width">Width:</label>    
+        <input type="number" id="width" name="width" min="1" max="50" value="2"><br>
+        
+        <label for="background">Background Color:</label>    
+        <input type="color" id="background" name="background" value="#FFFFFF"><br><br>
+
+        <h1>COLOR PALETTE</h1>
+        <div class="color-palette">
+            <input type="color" id="palet1" name="palet1" value="#000000">
+            <input type="color" id="palet2" name="palet2" value="#00FF00">
+            <input type="color" id="palet3" name="palet3" value="#FF0000">
+            <input type="color" id="palet4" name="palet4" value="#0000FF">
+            <input type="color" id="palet5" name="palet5" value="#FFFF00">
+        </div>
+        
+        <input type="submit" id="start" name="start" value="OPEN THE CANVAS">
+    </form>
+
+</body>
+</html>
